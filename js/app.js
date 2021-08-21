@@ -1,24 +1,25 @@
-const totalPrice = document.getElementById('total-price');
 const memoryCost = document.getElementById('memory-cost');
 const storageCost = document.getElementById('storage-cost');
 const deliveryCost = document.getElementById('delivery-cost');
+const totalPrice = document.getElementById('total-price');
 
 //update cost
 function updateCost(id, price) {
     const changingId = document.getElementById(id);
     changingId.innerText = price;
-    // if (price != 0) {
-    //     totalPrice.innerText = totalPriceValue + price;
-    // }
-    // return totalPrice;
 }
 //update total
-function updateTotal(price) {
+function updateTotal(isPromoApplied) {
     const memoryCostValue = parseInt(memoryCost.innerText);
     const storageCostValue = parseInt(storageCost.innerText);
     const deliveryCostValue = parseInt(deliveryCost.innerText);
-    const total = memoryCostValue + storageCostValue + deliveryCostValue;
-    totalPrice.innerText = total + 1299;
+    const total = 1299 + memoryCostValue + storageCostValue + deliveryCostValue;
+    totalPrice.innerText = total;
+    let bottomTotal = document.getElementById('bottom-total');
+    bottomTotal.innerText = total;
+    if (isPromoApplied == true) {
+        bottomTotal.innerText = total - (total * 0.2);
+    }
 }
 
 //adding event listener and calling function
@@ -58,7 +59,7 @@ document.getElementById('promo-apply').addEventListener('click', function() {
     const promoInput = document.getElementById('promo-input');
     const promoCode = promoInput.value;
     if (promoCode == 'stevekaku') {
-        console.log('promo applied');
+        updateTotal(true);
     }
     promoInput.value = '';
 });
