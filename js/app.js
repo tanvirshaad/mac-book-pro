@@ -13,11 +13,14 @@ function updateTotal(isPromoApplied) {
     const memoryCostValue = parseInt(memoryCost.innerText);
     const storageCostValue = parseInt(storageCost.innerText);
     const deliveryCostValue = parseInt(deliveryCost.innerText);
+    //calculating total
     const total = 1299 + memoryCostValue + storageCostValue + deliveryCostValue;
     totalPrice.innerText = total;
+    //calculating bottom total
     const bottomTotal = document.getElementById('bottom-total');
     bottomTotal.innerText = total;
     if (isPromoApplied == true) {
+        //calculating promo code discount
         bottomTotal.innerText = total - (total * 0.2);
     }
 }
