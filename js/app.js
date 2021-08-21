@@ -15,7 +15,7 @@ function updateTotal(isPromoApplied) {
     const deliveryCostValue = parseInt(deliveryCost.innerText);
     const total = 1299 + memoryCostValue + storageCostValue + deliveryCostValue;
     totalPrice.innerText = total;
-    let bottomTotal = document.getElementById('bottom-total');
+    const bottomTotal = document.getElementById('bottom-total');
     bottomTotal.innerText = total;
     if (isPromoApplied == true) {
         bottomTotal.innerText = total - (total * 0.2);
@@ -60,6 +60,7 @@ document.getElementById('promo-apply').addEventListener('click', function() {
     const promoCode = promoInput.value;
     if (promoCode == 'stevekaku') {
         updateTotal(true);
+        promoInput.setAttribute('disabled', false);
     }
     promoInput.value = '';
 });
